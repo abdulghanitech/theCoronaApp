@@ -1,14 +1,25 @@
-import React from 'react';
-import {View, Text, StyleSheet, Image, Linking, Share} from 'react-native';
+import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Linking,
+  Share,
+  Alert,
+} from 'react-native';
 import Menu from '../assets/menu.svg';
-import Bell from '../assets/bell.svg';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import MyProfilePic from '../assets/abdul-ghani.jpg';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {version} from '../package.json';
+import Axios from 'axios';
 
 const Info = ({navigation}) => {
+  const [latestVersion, setLatestVersion] = useState('');
+  const [showUpdateAlertBox, setShowUpdateAlertBox] = useState(false);
   const onShare = async () => {
     try {
       const result = await Share.share({
@@ -29,6 +40,38 @@ const Info = ({navigation}) => {
     }
   };
 
+  const checkAppUpdates = () => {
+    Axios.get(
+      'https://raw.githubusercontent.com/abdulghanitech/theCoronaApp/master/package.json',
+    ).then((res) => {
+      if (res.status === 200) {
+        console.log('got version info from server!');
+        console.log(res.data.version);
+        setLatestVersion(res.data.version);
+        if (res.data.version > '0.9.8') {
+          //new update available
+          Alert.alert(
+            "There's an update available",
+            'Want to update the app now?',
+            [
+              {
+                text: 'Ask me later',
+                onPress: () => console.log('Ask me later pressed'),
+              },
+              {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+              },
+              {text: 'OK', onPress: () => console.log('OK Pressed')},
+            ],
+            {cancelable: false},
+          );
+          setShowUpdateAlertBox(true);
+        }
+      }
+    });
+  };
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -99,7 +142,6 @@ const Info = ({navigation}) => {
           onPress={() => Linking.openURL('https://abdulghani.tech')}
         />
       </View>
-
       <View
         style={{
           flex: 1,
@@ -107,19 +149,31 @@ const Info = ({navigation}) => {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <Text style={{fontSize: 25, marginBottom: 20, textAlign: 'center'}}>
-          <MaterialCommunityIcons
-            name="share-variant"
-            size={25}
-            style={{paddingHorizontal: 20, marginHorizontal: 20}}
-            onPress={onShare}
-          />
-          Share the app
-        </Text>
-        <Text>App Version: {version}</Text>
-        <Text onPress={() => Linking.openURL('https://covid19india.org')}>
-          Check for app updates
-        </Text>
+        <TouchableOpacity style={styles.callBtn} onPress={onShare}>
+          <Text style={styles.btnText}>
+            <MaterialCommunityIcons
+              name="share-variant"
+              size={20}
+              style={{marginEnd: 10}}
+            />
+            &nbsp; Share App
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={{...styles.callBtn, backgroundColor: '#999FBF'}}
+          onPress={checkAppUpdates}>
+          <Text style={styles.btnText}>
+            <MaterialCommunityIcons
+              name="update"
+              size={20}
+              style={{marginEnd: 10}}
+            />
+            &nbsp; Check updates
+          </Text>
+        </TouchableOpacity>
+
+        <Text style={{marginTop: 20}}>App Version: {version}</Text>
         <Text onPress={() => Linking.openURL('https://covid19india.org')}>
           Source: covid19india.org
         </Text>
@@ -170,10 +224,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 24,
   },
   callBtn: {
-    backgroundColor: '#FF4D58',
-    width: 150,
+    backgroundColor: '#4D79FF',
+    width: 180,
     borderRadius: 40,
     padding: 10,
+    marginBottom: 10,
   },
   btnText: {
     fontSize: 16,
