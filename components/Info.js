@@ -63,7 +63,13 @@ const Info = ({navigation}) => {
                 onPress: () => console.log('Cancel Pressed'),
                 style: 'cancel',
               },
-              {text: 'OK', onPress: () => console.log('OK Pressed')},
+              {
+                text: 'OK',
+                onPress: () =>
+                  Linking.openURL(
+                    'https://github.com/abdulghanitech/theCoronaApp/blob/master/outputApk/theCoronaApp.apk?raw=true',
+                  ),
+              },
             ],
             {cancelable: false},
           );
