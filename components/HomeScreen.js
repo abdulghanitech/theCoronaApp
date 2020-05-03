@@ -158,15 +158,11 @@ const HomeScreen = ({navigation}) => {
           bottom: 10,
           right: 10,
           height: 70,
-          backgroundColor: '#fff',
+          backgroundColor: '#4D79FF',
           borderRadius: 100,
         }}
         onPress={onShare}>
-        <MaterialCommunityIcons
-          name="share-variant"
-          size={30}
-          color="#473F97"
-        />
+        <MaterialCommunityIcons name="share-variant" size={30} color="#fff" />
       </TouchableOpacity>
     </ScrollView>
   );
