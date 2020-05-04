@@ -66,7 +66,7 @@ const Info = ({navigation}) => {
                 text: 'OK',
                 onPress: () =>
                   Linking.openURL(
-                    'https://drive.google.com/open?id=12UVs5Lt-E1uGQ4Q7xaJZAjBH76FybqDh',
+                    'https://abdulghani.tech/the-coronavirus-app',
                   ),
               },
             ],
