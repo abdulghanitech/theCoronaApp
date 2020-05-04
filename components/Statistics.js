@@ -10,7 +10,6 @@ import {
   ScrollView,
 } from 'react-native';
 import MenuIcon from '../assets/menu.svg';
-import BellIcon from '../assets/bell.svg';
 import {BarChart} from 'react-native-chart-kit';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Axios from 'axios';
@@ -374,7 +373,7 @@ const Statistics = ({navigation}) => {
       if (res.status === 200) {
         console.log('got national level data');
         setRawData(res.data);
-        let responseData = normalizedGraphData(res.data.cases_time_series);
+        //let responseData = normalizedGraphData(res.data.cases_time_series);
         //console.log(responseData);
         //setGraphData(responseData);
         setRealTimeStats(res.data, selectedDate, selectedState);
@@ -520,7 +519,7 @@ const Statistics = ({navigation}) => {
               style={{
                 ...styles.bigCard,
                 backgroundColor: '#FF5959',
-                marginLeft: 8,
+                marginLeft: 2,
                 marginRight: null,
               }}>
               <Text style={styles.bigCardTitle}>Death</Text>

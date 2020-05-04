@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import 'react-native-gesture-handler';
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
   View,
   Share,
