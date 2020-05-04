@@ -25,7 +25,7 @@ const HomeScreen = ({navigation}) => {
     try {
       const result = await Share.share({
         message:
-          'Download The Corona App now to get latest updates on Covid-19 https://bit.ly/2zWkmGa',
+          'Download The Corona App now to get latest updates on Covid-19. https://abdulghani.tech/the-coronavirus-app',
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
