@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   View,
   Text,
@@ -179,6 +179,8 @@ const Info = ({navigation}) => {
           </Text>
         </TouchableOpacity>
 
+        <Text style={{marginTop: 20, fontSize: 20}}>Stay Home, Stay Safe!</Text>
+
         <Text style={{marginTop: 20}}>App Version: {version}</Text>
         <Text onPress={() => Linking.openURL('https://covid19india.org')}>
           Source: covid19india.org
@@ -217,7 +219,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 24,
     fontSize: 20,
     color: '#FFF',
-    marginTop: 40,
+    marginTop: 25,
   },
   para: {
     marginHorizontal: 24,

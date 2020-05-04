@@ -2,16 +2,8 @@
 import 'react-native-gesture-handler';
 import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
 import HomeScreen from './components/HomeScreen';
 import Statistics from './components/Statistics';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
