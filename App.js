@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
@@ -17,6 +17,7 @@ import Statistics from './components/Statistics';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Info from './components/Info';
+import SelfTest from './components/SelfTest';
 
 //const Stack = createStackNavigator();
 
@@ -54,6 +55,20 @@ const MyTabs = () => {
         }}
       />
       <Tab.Screen
+        name="SelfTest"
+        component={SelfTest}
+        options={{
+          tabBarLabel: '',
+          tabBarIcon: ({color, size}) => (
+            <MaterialCommunityIcons
+              name="stethoscope"
+              color={color}
+              size={size}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
         name="Info"
         component={Info}
         options={{
@@ -73,6 +88,7 @@ const App = () => {
       <Drawer.Navigator>
         <Drawer.Screen name="Home" component={MyTabs} />
         <Drawer.Screen name="Statistics" component={Statistics} />
+        <Drawer.Screen name="SelfTest" component={SelfTest} />
         <Drawer.Screen name="Info" component={Info} />
       </Drawer.Navigator>
     </NavigationContainer>

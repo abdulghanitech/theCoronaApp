@@ -9,7 +9,7 @@ import {
   Alert,
 } from 'react-native';
 import Menu from '../assets/menu.svg';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Toast from 'react-native-simple-toast';
 import MyProfilePic from '../assets/abdul-ghani.jpg';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
@@ -18,13 +18,13 @@ import {version} from '../package.json';
 import Axios from 'axios';
 
 const Info = ({navigation}) => {
-  const [latestVersion, setLatestVersion] = useState('');
-  const [showUpdateAlertBox, setShowUpdateAlertBox] = useState(false);
+  /* const [latestVersion, setLatestVersion] = useState('');
+  const [showUpdateAlertBox, setShowUpdateAlertBox] = useState(false); */
   const onShare = async () => {
     try {
       const result = await Share.share({
         message:
-          'Download The Corona App now to get latest updates on Covid-19',
+          'Download The Corona App now to get latest updates on Covid-19 https://bit.ly/2zWkmGa',
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
@@ -47,8 +47,7 @@ const Info = ({navigation}) => {
       if (res.status === 200) {
         console.log('got version info from server!');
         console.log(res.data.version);
-        setLatestVersion(res.data.version);
-        if (res.data.version > '0.9.8') {
+        if (res.data.version > version) {
           //new update available
           Alert.alert(
             "There's an update available",
@@ -67,13 +66,14 @@ const Info = ({navigation}) => {
                 text: 'OK',
                 onPress: () =>
                   Linking.openURL(
-                    'https://github.com/abdulghanitech/theCoronaApp/blob/master/outputApk/theCoronaApp.apk?raw=true',
+                    'https://drive.google.com/open?id=12UVs5Lt-E1uGQ4Q7xaJZAjBH76FybqDh',
                   ),
               },
             ],
             {cancelable: false},
           );
-          setShowUpdateAlertBox(true);
+        } else {
+          Toast.show("You're using the latest app!");
         }
       }
     });
