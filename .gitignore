@@ -41,6 +41,7 @@ buck-out/
 *.keystore
 !debug.keystore
 android/app/google-services.json
+android/java_pid12240.hprof
 
 # fastlane
 #
