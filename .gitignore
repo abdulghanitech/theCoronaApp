@@ -40,7 +40,7 @@ buck-out/
 \.buckd/
 *.keystore
 !debug.keystore
-google-services.json
+android/app/google-services.json
 
 # fastlane
 #
