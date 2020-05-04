@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   View,
   Share,
@@ -25,7 +25,7 @@ const HomeScreen = ({navigation}) => {
     try {
       const result = await Share.share({
         message:
-          'Download The Corona App now to get latest updates on Covid-19',
+          'Download The Corona App now to get latest updates on Covid-19 https://bit.ly/2zWkmGa',
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
@@ -40,6 +40,7 @@ const HomeScreen = ({navigation}) => {
       alert(error.message);
     }
   };
+
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -117,35 +118,37 @@ const HomeScreen = ({navigation}) => {
       </View>
 
       <View style={{flex: 1, marginHorizontal: 24, marginVertical: 40}}>
-        <LinearGradient
-          angle={268.74}
-          useAngle={true}
-          colors={['#56549E', '#AEA1E6']}
-          style={{borderRadius: 16}}>
-          <View style={{flexDirection: 'row'}}>
-            <View style={{marginTop: -10}}>
-              <Lady height={110} />
-            </View>
+        <TouchableOpacity onPress={() => navigation.navigate('SelfTest')}>
+          <LinearGradient
+            angle={268.74}
+            useAngle={true}
+            colors={['#56549E', '#AEA1E6']}
+            style={{borderRadius: 16}}>
+            <View style={{flexDirection: 'row'}}>
+              <View style={{marginTop: -10}}>
+                <Lady height={110} />
+              </View>
 
-            <View>
-              <Text style={{...styles.h2, marginTop: 10, fontSize: 18}}>
-                Do your own test!
-              </Text>
-              <View style={{flexDirection: 'row'}}>
-                <Text
-                  style={{
-                    ...styles.para,
-                    flexShrink: 1,
-                    marginRight: 5,
-                    marginBottom: 10,
-                    marginTop: 10,
-                  }}>
-                  Follow the instructions to {'\n'}do your own test.
+              <View>
+                <Text style={{...styles.h2, marginTop: 10, fontSize: 18}}>
+                  Do your own test!
                 </Text>
+                <View style={{flexDirection: 'row'}}>
+                  <Text
+                    style={{
+                      ...styles.para,
+                      flexShrink: 1,
+                      marginRight: 5,
+                      marginBottom: 10,
+                      marginTop: 10,
+                    }}>
+                    Follow the instructions to {'\n'}do your own test.
+                  </Text>
+                </View>
               </View>
             </View>
-          </View>
-        </LinearGradient>
+          </LinearGradient>
+        </TouchableOpacity>
       </View>
       <TouchableOpacity
         style={{

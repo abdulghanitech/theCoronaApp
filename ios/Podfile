@@ -83,6 +83,10 @@ target 'CoronaApp' do
 
   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
 
+  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+
+  pod 'react-native-simple-toast', :path => '../node_modules/react-native-simple-toast'
+
   target 'CoronaAppTests' do
     inherit! :complete
     # Pods for testing
