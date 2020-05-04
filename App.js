@@ -18,6 +18,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Info from './components/Info';
 import SelfTest from './components/SelfTest';
+import GlobalFont from 'react-native-global-font';
 
 //const Stack = createStackNavigator();
 
@@ -83,6 +84,10 @@ const MyTabs = () => {
 };
 
 const App = () => {
+  useEffect(() => {
+    let globalFont = 'GraphikRegular';
+    GlobalFont.applyGlobal(globalFont);
+  }, []);
   return (
     <NavigationContainer>
       <Drawer.Navigator>

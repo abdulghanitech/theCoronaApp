@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: '#FFF',
     marginTop: 40,
-    fontWeight: '600',
+    fontWeight: 'bold',
   },
   h2: {
     marginHorizontal: 24,
